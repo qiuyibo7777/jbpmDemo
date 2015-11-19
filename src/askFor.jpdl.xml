@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process name="askFor" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="311,13,48,109" name="start">
+      <transition g="-54,-11" name="to apply" to="apply"/>
+   </start>
+   <task assignee="Illidan" g="290,108,92,52" name="apply">
+      <transition g="-87,-21" name="judge manager" to="manageryorn"/>
+   </task>
+   <decision g="312,214,48,48" name="manageryorn" expr="#{manager}">
+      <transition g="-33,-35" name="no" to="manager apply"/>
+      <transition g="-7,-30" name="yes" to="boss apply"/>
+   </decision>
+   <task assignee="Thrall" g="202,310,92,52" name="manager apply">
+      <transition g="-50,1" name="manager no" to="terminate"/>
+      <transition g="247,135:-53,-22" name="manager deagree" to="apply"/>
+      <transition g="-26,-27" name="day>3" to="boss apply"/>
+      <transition g="247,481:-53,-22" name="manager agree" to="end"/>
+   </task>
+   <task assignee="LichKing" g="394,312,92,52" name="boss apply">
+      <transition g="-9,8" name="boss no" to="terminate"/>
+      <transition g="439,134:-53,-22" name="boss deagree" to="apply"/>
+      <transition g="439,481:5,-26" name="boss agree" to="end"/>
+   </task>
+   <end g="317,392,48,48" name="terminate"/>
+   <end g="316,458,48,48" name="end"/>
+</process>
